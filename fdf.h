@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 15:29:19 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/12/28 20:25:56 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/12/28 23:49:32 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ typedef struct s_coords
 
 // --------------- FUNCS ---------------
 
-int	draw_line(t_coords c1, t_mlx *mlx);
+void	draw_line(t_coords c1, t_mlx *mlx);
 
 #endif

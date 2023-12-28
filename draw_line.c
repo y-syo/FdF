@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 20:10:00 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/12/28 23:14:50 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/12/28 23:49:24 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ void	ft_swap(int *a, int *b)
 	*b = tmp;
 }
 
-int	draw_straight(int xy, t_coords c1, t_coords c2, t_mlx *mlx)
+void	draw_straight(int xy, t_coords c1, t_coords c2, t_mlx *mlx)
 {
 	if (xy)
 	{
@@ -209,7 +209,7 @@ int	draw_straight(int xy, t_coords c1, t_coords c2, t_mlx *mlx)
 	}
 }
 
-int	draw_line(t_coords c1, t_mlx *mlx)
+void	draw_line(t_coords c1, t_mlx *mlx)
 {
 	t_coords	c2;
 	t_coords	d;
