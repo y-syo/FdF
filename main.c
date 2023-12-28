@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:11:53 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/12/28 15:32:04 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:04:53 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@ int	mlx_end(int event, void *mlx)
 	if (!event)
 		mlx_loop_end(mlx);
 	return (0);
-}
-
-int	draw_line(t_coords c0, t_mlx *mlx)
-{
-	t_coords	c1;
-
-	c1.x = mlx->mouse_x;
-	c1.y = mlx->mouse_y;
-	mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, c0.x, c0.y, 0xFFD950FF);
-	mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, c1.x, c1.y, 0xFF4CA3FF);
 }
 
 int	on_mouse_event(int event, void *data)
