@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:11:53 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/12/28 21:04:53 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/12/30 22:23:51 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	mlx_end(int event, void *mlx)
 	return (0);
 }
 
-int	on_mouse_event(int event, void *data)
+/*int	on_mouse_event(int event, void *data)
 {
 	t_mlx		*mlx;
 	t_coords	c;
@@ -41,18 +41,61 @@ int	on_mouse_event(int event, void *data)
 		}
 	}
 	return (0);
+}*/
+
+void	draw_map(t_map *map, t_mlx *mlx)
+{
+	t_coords	c1;
+	t_coords	c2;
+	for (int i = 0; i + 1 < 16; i++)
+	{
+		ft_printf("%d | %d\n", map[i].x, map[i].y);
+		if (map[i].x != 3 && map[i].y)
+		{
+			c1.x = map[i].x * 50;
+			c1.y = map[i].y * 50;
+			c2.x = map[i + 1].x * 50;
+			c2.y = map[i + 1].y * 50;
+			draw_line(c1, c2, mlx);
+		}
+		if (i < 12)
+		{
+			c2.x = map[i + 4].x * 50;
+			c2.y = map[i + 4].y * 50;
+			draw_line(c1, c2, mlx);
+		}
+	}
 }
 
-int	main(void)
+void	parse(int argc, char **argv, t_map **map)
+{
+	(void)argc;
+	(void)argv;
+	*map = malloc(16 * sizeof(t_map));
+	for (int i = 0; i < 16; i++)
+	{
+		(*map)[i].x = i % 4;
+		(*map)[i].y = i / 4;
+		(*map)[i].z = 1;
+	}
+}
+
+int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
+	t_map	*map;
 
 	mlx.mouse_x = -1;
 	mlx.mouse_y = -1;
+	if (argc == 2)
+		parse(argc, argv, &map);
+	else
+		return (-1);
 	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 727, 727, "ft_seekers");
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 727, 727, "kys");
 	mlx_on_event(mlx.mlx_ptr, mlx.win_ptr, 5, mlx_end, mlx.mlx_ptr);
-	mlx_on_event(mlx.mlx_ptr, mlx.win_ptr, 2, on_mouse_event, &mlx);
+	// mlx_on_event(mlx.mlx_ptr, mlx.win_ptr, 2, on_mouse_event, &mlx);
+	draw_map(map, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 	mlx_destroy_window(mlx.mlx_ptr, mlx.win_ptr);
 	mlx_destroy_display(mlx.mlx_ptr);

@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 20:10:00 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/12/28 23:49:24 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/12/30 22:09:34 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,13 +209,10 @@ void	draw_straight(int xy, t_coords c1, t_coords c2, t_mlx *mlx)
 	}
 }
 
-void	draw_line(t_coords c1, t_mlx *mlx)
+void	draw_line(t_coords c1, t_coords c2, t_mlx *mlx)
 {
-	t_coords	c2;
 	t_coords	d;
 
-	c2.x = mlx->mouse_x;
-	c2.y = mlx->mouse_y;
 	mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, c1.x, c1.y, 0xFFD950FF);
 	mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, c2.x, c2.y, 0xFF4CA3FF);
 	d.x = c2.x - c1.x;

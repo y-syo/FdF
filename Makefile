@@ -5,35 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/28 23:38:57 by mmoussou          #+#    #+#              #
-#    Updated: 2023/12/28 23:48:52 by mmoussou         ###   ########.fr        #
+#    Created: 2023/12/30 16:27:11 by mmoussou          #+#    #+#              #
+#    Updated: 2023/12/30 21:28:16 by mmoussou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# find -type f -name "*.c" | sed "s/\.\///g" | xargs -Iname echo "`printf '\t\t\t'`" name "\\"
-SRCS =	main.c \
-		draw_line.c \
+NAME		= fdf
 
-OBJS = ${SRCS:.c=.o}
+MLX_SRC		= MacroLibX
+MLX			= libmlx.so
 
-OBJS += ./MacroLibX/libmlx.so
+SRCS		= src/main.c \
+			  src/draw_line.c \
 
-CC = gcc
+OBJS		= ${SRCS:.c=.o}
 
-CFLAGS = -Wall -Werror -Wextra -lSDL2
+INCLUDE		= include
 
-all: ${OBJS}
-	${CC} ${OBJS} ${CFLAGS}
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
+COPTS		= -I ./${INCLUDE} -lSDL2 -lm
+
+all:		${NAME} clean
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -o $@ -c $< ${COPTS}
+
+${NAME}:	${OBJS}
+	@${CC} ${CFLAGS} -o ${NAME} ${SRCS} ${MLX_SRC}/${MLX} printf/libftprintf.a ${COPTS}
+
+${MLX}:
+	@make --no-print-directory -C ${MLX_SRC} all
 
 clean:
-	rm -f ${OBJS}
+	@rm -f ${OBJS}
 
 fclean:	clean
-	rm -f a.out
+	@rm -f ${NAME}
 
 re:	fclean all
-
-.PHONY:	all clean fclean re
